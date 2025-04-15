@@ -1,8 +1,15 @@
 package com.example.repository;
 
+import java.util.Collection;
+import java.util.Optional;
+
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
 
 import com.example.entity.Message;
 
 public interface MessageRepository extends JpaRepository <Message,Integer> {
+    Optional<Message> findByMessageId(Integer messageId);
+
+    Collection<Message> findAllMessagesByPostedBy(Integer postedBy);
 }

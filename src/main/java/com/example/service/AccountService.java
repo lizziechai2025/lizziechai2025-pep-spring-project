@@ -25,8 +25,9 @@ public class AccountService {
     /**
      * @param newAccount
      */
-    public void register(Account newAccount){
-        accountRepository.save(newAccount);
+    public Account register(Account newAccount){
+        Account account = accountRepository.save(newAccount);
+        return account;
     }
 
     /**
@@ -38,11 +39,25 @@ public class AccountService {
        return account;
     }
 
+    /**
+     * @param account
+     */
     public Account findAccountByUsername(Account account){
         Optional<Account> optionalAccount = accountRepository.findByUsername(account.getUsername());
         if (optionalAccount.isPresent()){
-            Account foundAccount = optionalAccount.get();
-            return foundAccount;
+            return optionalAccount.get();
+        } 
+        
+        return null;
+    }
+
+    /**
+     * @param account
+     */
+    public Account findAccountByAccountId(Integer accountId){
+        Optional<Account> optionalAccount = accountRepository.findByAccountId(accountId);
+        if (optionalAccount.isPresent()){
+            return optionalAccount.get();
         } 
         
         return null;
